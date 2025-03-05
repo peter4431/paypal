@@ -67,11 +67,12 @@ const (
 //
 // https://developer.paypal.com/docs/api/orders/v2/#orders-get-response
 const (
-	OrderStatusCreated   string = "CREATED"
-	OrderStatusSaved     string = "SAVED"
-	OrderStatusApproved  string = "APPROVED"
-	OrderStatusVoided    string = "VOIDED"
-	OrderStatusCompleted string = "COMPLETED"
+	OrderStatusCreated          string = "CREATED"
+	OrderStatusSaved            string = "SAVED"
+	OrderStatusApproved         string = "APPROVED"
+	OrderStatusVoided           string = "VOIDED"
+	OrderStatusCompleted        string = "COMPLETED"
+	OrderStatusPayerActRequired string = "PAYER_ACTION_REQUIRED"
 )
 
 // Possible values for `category` in Item
@@ -984,6 +985,7 @@ type (
 		Payer         *PayerWithNameAndPhone `json:"payer,omitempty"`
 		Address       *Address               `json:"address,omitempty"`
 		PurchaseUnits []CapturedPurchaseUnit `json:"purchase_units,omitempty"`
+		UpdateTime    *time.Time             `json:"update_time,omitempty"`
 	}
 
 	// Payer struct
@@ -1073,14 +1075,14 @@ type (
 	}
 
 	PaymentSourcePaypalExperienceContext struct {
-		PaymentMethodPreference string `json:"payment_method_preference"`
-		BrandName               string `json:"brand_name"`
-		Locale                  string `json:"locale"`
-		LandingPage             string `json:"landing_page"`
-		ShippingPreference      string `json:"shipping_preference"`
-		UserAction              string `json:"user_action"`
-		ReturnURL               string `json:"return_url"`
-		CancelURL               string `json:"cancel_url"`
+		PaymentMethodPreference string `json:"payment_method_preference,omitempty"`
+		BrandName               string `json:"brand_name,omitempty"`
+		Locale                  string `json:"locale,omitempty"`
+		LandingPage             string `json:"landing_page,omitempty"`
+		ShippingPreference      string `json:"shipping_preference,omitempty"`
+		UserAction              string `json:"user_action,omitempty"`
+		ReturnURL               string `json:"return_url,omitempty"`
+		CancelURL               string `json:"cancel_url,omitempty"`
 	}
 
 	// CardBillingAddress structure
